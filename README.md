@@ -46,6 +46,7 @@ import iceutils as ice
 
 stress_strain = ice.compute_stress_strain(vx, vy)
 ```
+## Python file descriptions
 
 ### calc_strain_rates.py
 `calc_strain_rates.py` calculates inputed component velocities and saves a strain rate tiff with the following bands
@@ -78,7 +79,7 @@ band 5: effective (units yr$^{-1}$)
 ```
 
 ### clip_GL_mosiac.py
-`clip_GL_mosiac.py` clips the 0731 velocity mosiacs to a specifc extent. This was done using QGIS' `gdal:cliprasterbyextent` tool with QGIS's python interpreter 
+`clip_GL_mosiac.py` clips the 0731 velocity mosiacs to a specifc extent. This was done using QGIS' `gdal:cliprasterbyextent` tool with QGIS' python interpreter 
 
 ### gdal_fill_na.py
 `gdal_fill_na.py` fills in missing data in the velocity raster. This was only used for the 0731 velocity data.
