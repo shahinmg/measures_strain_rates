@@ -33,11 +33,15 @@ for u_vel_path, v_vel_path in matched_vels[:2]:
     u_vel_src = rasterio.open(u_vel_path)
     v_vel_src = rasterio.open(v_vel_path)
     
+    #get dx and dy
+    dx, dy = u_vel_src.transform[0], u_vel_src.transform[4]
+    
     u_vel = u_vel_src.read(1) # read first band of x comp vel
     v_vel = v_vel_src.read(1) # read first band of v comp vel
     
     #compute strain rates and rotate to flow direction
-    strain_dict, stress_dict = ice.compute_stress_strain(u_vel, v_vel,rotate=True)
+    strain_dict, stress_dict = ice.compute_stress_strain(u_vel, v_vel, dx=dx, dy=dy,
+                                                         rotate=True)
     
     # pull out strain rate components from strain_dict 
     e_xx = strain_dict['e_xx']

@@ -35,11 +35,15 @@ def strain_rate_calc_worker(u_vel_path,v_vel_path):
     u_vel_src = rasterio.open(u_vel_path)
     v_vel_src = rasterio.open(v_vel_path)
     
+    #get dx and dy
+    dx, dy = u_vel_src.transform[0], u_vel_src.transform[4]
+    
     u_vel = u_vel_src.read(1) # read first band of x comp vel
     v_vel = v_vel_src.read(1) # read first band of v comp vel
     
     #compute strain rates and rotate to flow direction
-    strain_dict, stress_dict = ice.compute_stress_strain(u_vel, v_vel,rotate=True)
+    strain_dict, stress_dict = ice.compute_stress_strain(u_vel, v_vel, dx=dx, dy=dy,
+                                                         rotate=True)
     
     # pull out strain rate components from strain_dict 
     e_xx = strain_dict['e_xx']
@@ -73,6 +77,6 @@ def strain_rate_calc_worker(u_vel_path,v_vel_path):
     
 if __name__ == "__main__":
     with Pool(processes=cpu_count()-5) as pool:
-          results = pool.starmap(strain_rate_calc_worker, matched_vels[:3])
+          results = pool.starmap(strain_rate_calc_worker, matched_vels)
         
         
