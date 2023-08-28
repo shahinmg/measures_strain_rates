@@ -1,0 +1,13 @@
+numpy
+scipy
+matplotlib
+gdal
+h5py
+pyproj
+scikit-image
+tqdm
+rasterio
+opencv
+scikit-learn
+pint
+cvxopt

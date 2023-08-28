@@ -21,7 +21,7 @@ scikit-learn
 pint
 cvxopt
 ```
-
+Below is a slightly modified version of how to install `iceutils`
 ```
 # Install requirements
 conda install -c conda-forge --file=requirements.txt
@@ -46,3 +46,41 @@ import iceutils as ice
 
 stress_strain = ice.compute_stress_strain(vx, vy)
 ```
+
+### calc_strain_rates.py
+`calc_strain_rates.py` calculates inputed component velocities and saves a strain rate tiff with the following bands
+```
+band 1: e_xx (units yr$^{-1}$)
+band 2: e_yy (units yr$^{-1}$)
+band 3: e_xy (units yr$^{-1}$)
+band 4: dilatation (units yr$^{-1}$)
+band 5: effective (units yr$^{-1}$)
+```
+
+### calc_strain_rates.py
+`calc_strain_rates.py` calculates inputed component velocities and saves a strain rate tiff with the following bands
+```
+band 1: e_xx (units yr$^{-1}$)
+band 2: e_yy (units yr$^{-1}$)
+band 3: e_xy (units yr$^{-1}$)
+band 4: dilatation (units yr$^{-1}$)
+band 5: effective (units yr$^{-1}$)
+```
+
+### calc_strain_rates.py
+`calc_strain_rates_parallel_0646.py` and `calc_strain_rates_parallel_0731.py` calculates inputed component velocities and saves a strain rate tiff with the following bands in parallel using python's multiprocessing package
+```
+band 1: e_xx (units yr$^{-1}$)
+band 2: e_yy (units yr$^{-1}$)
+band 3: e_xy (units yr$^{-1}$)
+band 4: dilatation (units yr$^{-1}$)
+band 5: effective (units yr$^{-1}$)
+```
+
+### clip_GL_mosiac.py
+`clip_GL_mosiac.py` clips the 0731 velocity mosiacs to a specifc extent. This was done using QGIS' `gdal:cliprasterbyextent` tool with QGIS's python interpreter 
+
+### gdal_fill_na.py
+`gdal_fill_na.py` fills in missing data in the velocity raster. This was only used for the 0731 velocity data.
+
+
