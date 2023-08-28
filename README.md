@@ -58,17 +58,7 @@ band 4: dilatation (units yr$^{-1}$)
 band 5: effective (units yr$^{-1}$)
 ```
 
-### calc_strain_rates.py
-`calc_strain_rates.py` calculates inputed component velocities and saves a strain rate tiff with the following bands
-```
-band 1: e_xx (units yr$^{-1}$)
-band 2: e_yy (units yr$^{-1}$)
-band 3: e_xy (units yr$^{-1}$)
-band 4: dilatation (units yr$^{-1}$)
-band 5: effective (units yr$^{-1}$)
-```
-
-### calc_strain_rates.py
+### calc_strain_rates_parallel_0646.py & calc_strain_rates_parallel_0731
 `calc_strain_rates_parallel_0646.py` and `calc_strain_rates_parallel_0731.py` calculates inputed component velocities and saves a strain rate tiff with the following bands in parallel using python's multiprocessing package
 ```
 band 1: e_xx (units yr$^{-1}$)
