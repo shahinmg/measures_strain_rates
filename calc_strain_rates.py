@@ -50,6 +50,24 @@ for u_vel_path, v_vel_path in matched_vels[:2]:
     dilatation = strain_dict['dilatation']
     effective = strain_dict['effective']
     
+    # Morlighem effective tensile strain rate equation 6  DOI: 10.1002/2016GL067695
+    
+    # find principal  strain rates or "eigenvalues" of the strain rate tensor
+    # using equation found here https://www.continuummechanics.org/principalstrain.html#:~:text=The%20principal%20orientation%20is%20tan(2%CE%B8P)%20%3D%202%20%E2%88%97,%2B%20(0.30)2%20%CF%B5max%2C%20%CF%B5min%20%3D%200.611%2C%20%E2%88%92%200.311
+    first_term = (e_xx + e_yy)/2
+    radicand = np.square(((e_xx - e_yy)/2)) + np.square((e_xy/2))
+    second_term = np.sqrt(radicand)
+    
+    # get e1 and e2; The first and second principal strain rates or "eigenvalues"
+    e1 = first_term + second_term
+    e2 = first_term - second_term
+    
+
+    e1_eff = np.where(e1<0,0,e1)
+    e2_eff = np.where(e2_eff<0,0,e2_eff)
+    effective_tensile_sq = 0.5 * (np.square(e1_eff) + np.square(e2_eff))
+    effective_tensile = np.sqrt(effective_tensile_sq) # this is what should be input in equation 7
+    
     
     strain_rate_bands = [e_xx, e_yy, e_xy, dilatation, effective]
     band_names = ['e_xx', 'e_yy', 'e_xy', 'dilatation', 'effective']
