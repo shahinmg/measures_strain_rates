@@ -64,7 +64,7 @@ for u_vel_path, v_vel_path in matched_vels[:2]:
     
 
     e1_eff = np.where(e1<0,0,e1)
-    e2_eff = np.where(e2_eff<0,0,e2_eff)
+    e2_eff = np.where(e2<0,0,e2)
     effective_tensile_sq = 0.5 * (np.square(e1_eff) + np.square(e2_eff))
     effective_tensile = np.sqrt(effective_tensile_sq) # this is what should be input in equation 7
     
