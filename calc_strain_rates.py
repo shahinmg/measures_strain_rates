@@ -69,8 +69,8 @@ for u_vel_path, v_vel_path in matched_vels[:2]:
     effective_tensile = np.sqrt(effective_tensile_sq) # this is what should be input in equation 7
     
     
-    strain_rate_bands = [e_xx, e_yy, e_xy, dilatation, effective]
-    band_names = ['e_xx', 'e_yy', 'e_xy', 'dilatation', 'effective']
+    strain_rate_bands = [e_xx, e_yy, e_xy, dilatation, effective, effective_tensile]
+    band_names = ['e_xx', 'e_yy', 'e_xy', 'dilatation', 'effective', 'effective_tensile']
     
     meta = u_vel_src.meta.copy()
     meta['count'] = len(strain_rate_bands)
