@@ -15,7 +15,7 @@ opt_path = './measures_0646_vx_vy_files'
 opt_vx_data = [opt for opt in os.listdir(opt_path) if opt.endswith('vx_v03.1.tif') or opt.endswith('vx_v03.0.tif')]
 opt_vy_data = [opt for opt in os.listdir(opt_path) if opt.endswith('vy_v03.1.tif') or opt.endswith('vy_v03.0.tif')]
 
-op = '../opt_strain_rates/' #out path
+op = '../opt_strain_rates_example/' #out path
 
 # get matching velocity pairs
 matched_vels = []
@@ -68,9 +68,22 @@ for u_vel_path, v_vel_path in matched_vels[:2]:
     effective_tensile_sq = 0.5 * (np.square(e1_eff) + np.square(e2_eff))
     effective_tensile = np.sqrt(effective_tensile_sq) # this is what should be input in equation 7
     
+    # using table 3.4 of creep parameter A values from cuffey and patteson pg 75 and 
+    # an assumed ice temperature of -5 from Morlighem et al., 2016
+    A = 9.3 * 10**-25 #s^-1 Pa^-3
+    # need to convert from per second to per year to match computed strain rate units
+    # and MPa to match the Morlighem text
+    n = 3
+    sec_in_yr = 86400 * 365
+    An = A * sec_in_yr * 10**18 #yr^-1 MPa^-3
+    # convert A to B using eq 2.13 in Kees' book
+    B = An ** (-1/n) # MPa yr^1/3
+    # B = 600 * 1e3
+    # now compute the tensile von Mises stress from equation 7 in Morlighem et al., 2016
+    vm_stress = np.sqrt(3) * B * np.power(effective_tensile,1/n) #MPa
     
-    strain_rate_bands = [e_xx, e_yy, e_xy, dilatation, effective, effective_tensile]
-    band_names = ['e_xx', 'e_yy', 'e_xy', 'dilatation', 'effective', 'effective_tensile']
+    strain_rate_bands = [e_xx, e_yy, e_xy, dilatation, effective, effective_tensile, vm_stress]
+    band_names = ['e_xx', 'e_yy', 'e_xy', 'dilatation', 'effective', 'effective_tensile', 'von_Mises_Stress']
     
     meta = u_vel_src.meta.copy()
     meta['count'] = len(strain_rate_bands)
