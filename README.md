@@ -65,8 +65,14 @@ band 1: e_xx (units yr$^{-1}$)
 band 2: e_yy (units yr$^{-1}$)
 band 3: e_xy (units yr$^{-1}$)
 band 4: dilatation (units yr$^{-1}$)
-band 5: effective (units yr$^{-1}$)
+band 5: effective strain rate (units yr$^{-1}$)
+band 6: effective_tensile strain rate (units yr$^{-1}$)
+band 7: von_Mises_Stress (units Mpa)
 ```
+the von Mises stress output in band 7 is calculated using the equations from [Morlighem et al (2016)](https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2016GL067695). Effective tensile strain rate (band 6) comes from Morlighem et al (2016) equation 6
+$$ \tilde{\dot{\varepsilon}}_{e}^{2} = \frac{1}{2}(\max(0,\dot{\varepsilon}_{1})^{2} + (\max(0,\dot{\varepsilon}_{1})^{2})$$
+and the tensile von Mises stress as 
+$$ \tilde{\sigma} = \sqrt{3} B \tilde{\dot{\varepsilon}}_{e}^\frac{1}{n}$$
 
 ### clip_GL_mosiac.py
 `clip_GL_mosiac.py` clips the 0731 velocity mosiacs to a specifc extent. This was done using QGIS' `gdal:cliprasterbyextent` tool with QGIS' python interpreter 
