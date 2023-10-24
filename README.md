@@ -73,7 +73,7 @@ band 7: von_Mises_Stress (units Mpa)
 ```
 the von Mises stress output in band 7 is calculated using the equations from [Morlighem et al (2016)](https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2016GL067695). Effective tensile strain rate (band 6) comes from Morlighem et al (2016) equation 6
 **von Mises equations**
-$$\tilde{\dot{\varepsilon}}_{e}^{2} = \frac{1}{2}(\max(0,\dot{\varepsilon}_{1})^{2} + (\max(0,\dot{\varepsilon}_{1})^{2})$$
+$\tilde{\dot{\varepsilon}}_{e}^{2} = \frac{1}{2}(\max(0,\dot{\varepsilon}_{1})^{2} + (\max(0,\dot{\varepsilon}_{1})^{2})$
 and the tensile von Mises stress as 
 $$\tilde{\sigma} = \sqrt{3} B \tilde{\dot{\varepsilon}}_{e}^\frac{1}{n}$$
 
